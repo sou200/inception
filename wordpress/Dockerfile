@@ -1,13 +1,12 @@
 FROM debian:bullseye
 
 RUN apt-get update && \
-    apt-get install -y php-fpm tar libpng-dev && \
+    apt-get install -y php-fpm \
+    ca-certificates && \
     apt-get clean
 
-WORKDIR /var/www/html
+ADD https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/bin/wp
 
-ADD https://wordpress.org/latest.tar.gz .
-RUN tar -xzf latest.tar.gz && \
-    rm latest.tar.gz
+RUN chmod +x /usr/bin/wp && \
+    mkdir -p /var/www/html
 
-CMD ["php-fpm"]
