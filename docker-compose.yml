@@ -1,0 +1,22 @@
+services:
+  wordpress:
+    build: wordpress
+    volumes:
+      - wordpress_volume:/var/www/html
+    env_file:
+      - .env
+  mysql:
+    build: mysql
+    volumes:
+      - database_volume:
+    env_file:
+      - .env
+  nginx:
+    build: nginx
+      - wordpress_volume:/var/www/html
+    env_file:
+      - .env
+
+volumes:
+  wordpress_volume:
+  database_volume:
