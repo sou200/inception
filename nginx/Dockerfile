@@ -6,4 +6,4 @@ WORKDIR /etc/nginx/sites-available/
 RUN rm default
 COPY default .
 
-CMD [ "nginx", "-g" ,"daemon off;" ]
+ENTRYPOINT [ "nginx", "-g" ,"daemon off;" ]
