@@ -7,13 +7,14 @@ services:
       - .env
   wordpress:
     build: wordpress
-    # volumes:
-    #   - wordpress_volume:/var/www/html
+    volumes:
+      - wordpress_volume:/var/www/wordpress
     env_file:
       - .env
   nginx:
     build: nginx
-    #   - wordpress_volume:/var/www/html
+    volumes:
+      - wordpress_volume:/var/www/wordpress
     env_file:
       - .env
     ports:
@@ -21,4 +22,9 @@ services:
 
 volumes:
   wordpress_volume:
-  database_volume:
+    name: wordpress_volume
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/serhouni/Desktop/data/
+  # database_volume:

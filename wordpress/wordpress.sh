@@ -1,15 +1,13 @@
 #!/bin/bash
 
-# mkdir -p /var/www/html/
-
-wp core download --path=/var/www/html/ --allow-root
+wp core download --path=/var/www/wordpress/ --allow-root
 
 sleep 5
 
-cd /var/www/html/
-chown -R www-data:www-data /var/www/html/
+cd /var/www/wordpress/
+# chown -R www-data:www-data /var/www/wordpress/
 
-wp config create --path=/var/www/html/ \
+wp config create --path=/var/www/wordpress/ \
                     --dbname="$DBNAME" \
                     --dbuser="$DBUSER" \
                     --dbpass="$DBPASS" \
@@ -18,7 +16,7 @@ wp config create --path=/var/www/html/ \
 
 mariadb -u$DBUSER -p$DBPASS -h$DBHOST -e "CREATE DATABASE $DBNAME;"
 
-wp core install --path=/var/www/html/ \
+wp core install --path=/var/www/wordpress/ \
                 --url="$WP_URL" \
                 --title="$WP_TITLE" \
                 --admin_user="$WP_ADMIN" \

@@ -6,7 +6,7 @@ WORKDIR /etc/nginx/sites-available/
 RUN rm default
 COPY default .
 
-RUN chown -R www-data:www-data /var/www/html
+# RUN chown -R www-data:www-data /var/www/wordpress
 
 EXPOSE 80
 

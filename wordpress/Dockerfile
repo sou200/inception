@@ -16,6 +16,8 @@ COPY www.conf /etc/php/7.4/fpm/pool.d/www.conf
 RUN chmod +x /usr/bin/wp && \
     chmod +x ./wordpress.sh
 
+RUN mkdir /var/www/wordpress/
+
 EXPOSE 9000
 
 ENTRYPOINT ["./wordpress.sh"]
