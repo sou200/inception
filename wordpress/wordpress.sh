@@ -1,11 +1,13 @@
 #!/bin/bash
 
-mkdir -p /var/www/html/
-
+# mkdir -p /var/www/html/
 
 wp core download --path=/var/www/html/ --allow-root
 
-sleep 1
+sleep 5
+
+cd /var/www/html/
+chown -R www-data:www-data /var/www/html/
 
 wp config create --path=/var/www/html/ \
                     --dbname="$DBNAME" \
@@ -14,15 +16,20 @@ wp config create --path=/var/www/html/ \
                     --dbhost="$DBHOST" \
                     --allow-root
 
-sleep 1
+mariadb -u$DBUSER -p$DBPASS -h$DBHOST -e "CREATE DATABASE $DBNAME;"
 
 wp core install --path=/var/www/html/ \
                 --url="$WP_URL" \
                 --title="$WP_TITLE" \
                 --admin_user="$WP_ADMIN" \
                 --admin_password="$WP_PASS" \
+                --admin_email="$WP_ADMIN_EMAIL" \
+                --skip-email \
                 --allow-root
 
-php7.4-fpm -F
+mkdir /run/php
 
+php-fpm7.4 -F
+
+tail -f /dev/null
 # bash

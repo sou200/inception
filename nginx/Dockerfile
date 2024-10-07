@@ -6,4 +6,8 @@ WORKDIR /etc/nginx/sites-available/
 RUN rm default
 COPY default .
 
+RUN chown -R www-data:www-data /var/www/html
+
+EXPOSE 80
+
 ENTRYPOINT [ "nginx", "-g" ,"daemon off;" ]
