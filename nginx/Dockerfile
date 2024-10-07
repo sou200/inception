@@ -2,11 +2,7 @@ FROM debian:bullseye
 RUN apt-get update && \ 
     apt-get install -y nginx
 
-WORKDIR /etc/nginx/sites-available/
-RUN rm default
-COPY default .
-
-# RUN chown -R www-data:www-data /var/www/wordpress
+COPY default /etc/nginx/sites-available/default
 
 EXPOSE 80
 

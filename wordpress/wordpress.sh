@@ -5,7 +5,6 @@ wp core download --path=/var/www/wordpress/ --allow-root
 sleep 5
 
 cd /var/www/wordpress/
-# chown -R www-data:www-data /var/www/wordpress/
 
 wp config create --path=/var/www/wordpress/ \
                     --dbname="$DBNAME" \
@@ -29,5 +28,5 @@ mkdir /run/php
 
 php-fpm7.4 -F
 
-tail -f /dev/null
+# tail -f /dev/null
 # bash

@@ -22,9 +22,9 @@ services:
 
 volumes:
   wordpress_volume:
-    name: wordpress_volume
-    driver_opts:
-      type: none
-      o: bind
-      device: /Users/serhouni/Desktop/data/
-  # database_volume:
+#     name: wordpress_volume
+    # driver_opts:
+    #   device: /Users/serhouni/Desktop/data/
+    #   type: none
+    #   o: bind
+#   # database_volume:
