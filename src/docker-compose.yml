@@ -1,0 +1,35 @@
+services:
+  mariadb:
+    build: requirements/mariadb
+    volumes:
+      - database_volume:/var/lib/mysql
+    env_file:
+      - .env
+  wordpress:
+    build: requirements/wordpress
+    volumes:
+      - wordpress_volume:/var/www/wordpress
+    env_file:
+      - .env
+  nginx:
+    build: requirements/nginx
+    volumes:
+      - wordpress_volume:/var/www/wordpress
+    env_file:
+      - .env
+    ports:
+      - "443:443"
+
+volumes:
+  wordpress_volume:
+    name: wordpress_volume
+    driver_opts:
+      device: /Users/serhouni/Desktop/data/
+      type: none
+      o: bind
+  database_volume:
+    name: wordpress_volume
+    driver_opts:
+      device: /Users/serhouni/Desktop/data/
+      type: none
+      o: bind
