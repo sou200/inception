@@ -4,7 +4,7 @@ RUN apt-get update && \
     apt-get install -y mariadb-server && \
     apt-get clean
 
-COPY conf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/
  
 COPY ./tools/mariadb.sh .
 RUN chmod +x mariadb.sh

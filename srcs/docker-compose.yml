@@ -24,12 +24,12 @@ volumes:
   wordpress_volume:
     name: wordpress_volume
     driver_opts:
-      device: /Users/serhouni/Desktop/data/
+      device: /Users/serhouni/Desktop/data/wordpress
       type: none
       o: bind
   database_volume:
-    name: wordpress_volume
+    name: database_volume
     driver_opts:
-      device: /Users/serhouni/Desktop/data/
+      device: /Users/serhouni/Desktop/data/database
       type: none
       o: bind

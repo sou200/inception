@@ -13,20 +13,22 @@ wp config create --path=/var/www/wordpress/ \
                     --dbhost="$DBHOST" \
                     --allow-root
 
-mariadb -u$DBUSER -p$DBPASS -h$DBHOST -e "CREATE DATABASE $DBNAME;"
+mariadb -u$DBUSER -p$DBPASS -h$DBHOST -e "CREATE DATABASE IF NOT EXISTS $DBNAME;"
 
 wp core install --path=/var/www/wordpress/ \
                 --url="$WP_URL" \
                 --title="$WP_TITLE" \
                 --admin_user="$WP_ADMIN" \
-                --admin_password="$WP_PASS" \
+                --admin_password="$WP_ADMIN_PASS" \
                 --admin_email="$WP_ADMIN_EMAIL" \
-                --skip-email \
+                --allow-root
+
+wp user create $WP_USER $WP_USER_EMAIL \
+                --role=author \
+                --user_pass=$WP_USER_PASS \
+                --path=/var/www/wordpress \
                 --allow-root
 
 mkdir /run/php
 
 php-fpm7.4 -F
-
-# tail -f /dev/null
-# bash
