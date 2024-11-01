@@ -11,4 +11,4 @@ stop:
 
 clean:
 	docker volume rm ${shell docker volume ls -q}
-	docker prune -a -f
+	docker system prune -a -f

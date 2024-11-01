@@ -30,7 +30,6 @@ wp user create $WP_USER $WP_USER_EMAIL \
                 --user_pass=$WP_USER_PASS \
                 --allow-root
 
-                # --path=/var/www/wordpress \
 mkdir /run/php
 
 php-fpm7.4 -F
