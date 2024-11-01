@@ -5,12 +5,16 @@ services:
       - database_volume:/var/lib/mysql
     env_file:
       - .env
+    networks:
+      - inception_network
   wordpress:
     build: requirements/wordpress
     volumes:
       - wordpress_volume:/var/www/wordpress
     env_file:
       - .env
+    networks:
+      - inception_network
   nginx:
     build: requirements/nginx
     volumes:
@@ -19,6 +23,8 @@ services:
       - .env
     ports:
       - "443:443"
+    networks:
+      - inception_network
 
 volumes:
   wordpress_volume:
@@ -27,9 +33,13 @@ volumes:
       device: /Users/serhouni/Desktop/data/wordpress
       type: none
       o: bind
+
   database_volume:
     name: database_volume
     driver_opts:
       device: /Users/serhouni/Desktop/data/database
       type: none
       o: bind
+
+networks:
+  inception_network:

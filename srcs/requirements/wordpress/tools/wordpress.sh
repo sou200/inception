@@ -4,10 +4,13 @@ wp core download --path=/var/www/wordpress/ --allow-root
 
 sleep 5
 
+if [ ! -d /var/www/wordpress ]; then
+    mkdir /var/www/wordpress/
+fi
+
 cd /var/www/wordpress/
 
-wp config create --path=/var/www/wordpress/ \
-                    --dbname="$DBNAME" \
+wp config create --dbname="$DBNAME" \
                     --dbuser="$DBUSER" \
                     --dbpass="$DBPASS" \
                     --dbhost="$DBHOST" \
@@ -15,8 +18,7 @@ wp config create --path=/var/www/wordpress/ \
 
 mariadb -u$DBUSER -p$DBPASS -h$DBHOST -e "CREATE DATABASE IF NOT EXISTS $DBNAME;"
 
-wp core install --path=/var/www/wordpress/ \
-                --url="$WP_URL" \
+wp core install --url="$WP_URL" \
                 --title="$WP_TITLE" \
                 --admin_user="$WP_ADMIN" \
                 --admin_password="$WP_ADMIN_PASS" \
@@ -26,9 +28,9 @@ wp core install --path=/var/www/wordpress/ \
 wp user create $WP_USER $WP_USER_EMAIL \
                 --role=author \
                 --user_pass=$WP_USER_PASS \
-                --path=/var/www/wordpress \
                 --allow-root
 
+                # --path=/var/www/wordpress \
 mkdir /run/php
 
 php-fpm7.4 -F
