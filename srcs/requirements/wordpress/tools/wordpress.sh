@@ -23,7 +23,6 @@ wp core install --url="$WP_URL" \
                 --admin_user="$WP_ADMIN" \
                 --admin_password="$WP_ADMIN_PASS" \
                 --admin_email="$WP_ADMIN_EMAIL" \
-                --skip-email \
                 --allow-root
 
 wp user create $WP_USER $WP_USER_EMAIL \
