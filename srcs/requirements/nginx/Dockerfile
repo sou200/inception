@@ -4,7 +4,7 @@ RUN apt-get update && \
 
 RUN mkdir /home/ssl && \
     openssl req -x509 -newkey rsa:4096 -keyout /home/ssl/key.key -out /home/ssl/cert.crt \
-    -sha256 -days 3650 -nodes -subj "/C=US/ST=State/L=City/O=Organization/CN=serhouni.42.fr"
+    -days 3650 -nodes -subj "/C=MA/ST=RabatSaleKenitra/L=SidiTaibi/O=1337/CN=serhouni.42.fr"
 
 COPY conf/default /etc/nginx/sites-available/
 
