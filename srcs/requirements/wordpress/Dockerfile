@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y \
 ADD https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/bin/wp
 
 COPY ./tools/wordpress.sh .
-COPY conf/www.conf /etc/php/7.4/fpm/pool.d/
 
 RUN chmod +x /usr/bin/wp && \
     chmod +x ./wordpress.sh
