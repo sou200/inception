@@ -30,14 +30,14 @@ volumes:
   wordpress_volume:
     name: wordpress_volume
     driver_opts:
-      device: /home/serhouni/Desktop/data/wordpress
+      device: /home/serhouni/data/wordpress
       type: none
       o: bind
 
   database_volume:
     name: database_volume
     driver_opts:
-      device: /home/serhouni/Desktop/data/database
+      device: /home/serhouni/data/database
       type: none
       o: bind
 
