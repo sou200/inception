@@ -1,7 +1,7 @@
 docker_compose = docker compose --project-directory srcs
 
 up:
-	$(docker_compose) up
+	$(docker_compose) up --build
 
 down:
 	$(docker_compose) down

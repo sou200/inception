@@ -1,6 +1,8 @@
 services:
   mariadb:
+    container_name: mariadb
     build: requirements/mariadb
+    image: mariadb:si-taibi
     volumes:
       - database_volume:/var/lib/mysql
     env_file:
@@ -8,7 +10,9 @@ services:
     networks:
       - inception_network
   wordpress:
+    container_name: wordpress
     build: requirements/wordpress
+    image: wordpress:si-taibi
     volumes:
       - wordpress_volume:/var/www/wordpress
     env_file:
@@ -16,7 +20,9 @@ services:
     networks:
       - inception_network
   nginx:
+    container_name: nginx
     build: requirements/nginx
+    image: nginx:si-taibi
     volumes:
       - wordpress_volume:/var/www/wordpress
     env_file:
@@ -30,14 +36,16 @@ volumes:
   wordpress_volume:
     name: wordpress_volume
     driver_opts:
-      device: /home/serhouni/data/wordpress
+      # device: /home/serhouni/data/wordpress
+      device: /Users/serhouni/Desktop/data/wordpress
       type: none
       o: bind
 
   database_volume:
     name: database_volume
     driver_opts:
-      device: /home/serhouni/data/database
+      # device: /home/serhouni/data/database
+      device: /Users/serhouni/Desktop/data/database
       type: none
       o: bind
 

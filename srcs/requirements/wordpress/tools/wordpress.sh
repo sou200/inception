@@ -18,8 +18,6 @@ wp config create --dbname="$DBNAME" \
                     --dbhost="$DBHOST" \
                     --allow-root
 
-mariadb -u$DBUSER -p$DBPASS -h$DBHOST -e "CREATE DATABASE IF NOT EXISTS $DBNAME;"
-
 wp core install --url="$WP_URL" \
                 --title="$WP_TITLE" \
                 --admin_user="$WP_ADMIN" \
